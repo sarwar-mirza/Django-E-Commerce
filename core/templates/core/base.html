@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}   <!--load static file images, file, video, etc-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Dwonload bootstrap css -->
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+    <!-- Dwonload carousel css -->
+    <link rel="stylesheet" href="{% static 'core/css/owl.carousel.min.css' %}">
+    <!-- Dwonload fontawesome css -->
+    <link rel="stylesheet" href="{% static 'core/css/fontawesome.css' %}">
+
+    <!-- block tag  css-->
+    {% block css %}
+    <!-- custom css -->
+      <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    {% endblock css %}
+
+    <!-- block tag title -->
+    <title>{% block title %}{% endblock title %}</title>
+
+</head>
+<body>
+    <!-- include navbar -->
+    {% include "core/navbar.html" %}
+
+    <!-- define block tag -->
+    {% block banner_slider %} {% endblock banner_slider %}
+    {% block livesale %} {% endblock livesale %}
+    {% block main-content %} {% endblock main-content %}
+
+
+
+    <!-- Start Footer -->
+    <footer class="container-fluid bg-dark text-center p-2 mt-5">
+        <small class="text-white">Copyright &copy; 2024 || Designed By me2 || </small>
+        <img src="{% static 'core/assets/payment.png' %}" alt="" srcset="" class="img-fluid" height="2px">
+    </footer> 
+    <!-- End Footer -->
+
+    <!-- Dwonload jquery, popper, bootstrap, carousel, fontawesome javaScript -->
+    <script src="{% static 'core/js/jquery.js' %}"></script>
+    <script src="{% static 'core/js/popper.js' %}"></script>
+    <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'core/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'core/js/all.min.js' %}"></script>
+</body>
+</html>
