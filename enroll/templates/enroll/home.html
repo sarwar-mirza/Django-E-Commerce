@@ -19,9 +19,6 @@
     <div class="carousel-item">
       <img src="{% static 'core/assets/banner/b2.jpg' %}" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item">
-      <img src="{% static 'core/assets/banner/b3.jpg' %}" class="d-block w-100" alt="...">
-    </div>
     
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
@@ -53,3 +50,128 @@
 
 
 
+{% block main-content %}
+<!-- start 1st product slider -->
+
+<div class="m-3">
+  <h2 class="mt-5">Audi Car</h2>
+
+  <!-- slider 1 -->
+  <div class="owl-carousel" id="slider1">
+    {% for a in audi %}
+      <div class="item">
+        <img src="{{a.product_image.url}}" alt="" height="200px">
+        <span class="fw-bold">{{a.title}}</span><br>
+        <span class="fs-5">Tk. {{a.discounted_price}}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- end 1st product slider -->
+
+
+<!-- start payment info section -->
+<div class="container my-5 border">
+  <div class="row mt-2">
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'enroll/assets/cc.jpg' %}" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'enroll/assets/nb.jpg' %}" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'enroll/assets/upi.jpg' %}" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'enroll/assets/bj.jpg' %}" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end payment section -->
+
+<!-- start 2nd product slider -->
+<div class="m-3">
+  <h2 class="mt-5">Bugatti Car</h2>
+
+  <!-- slider 2 -->
+  <div class="owl-carousel" id="slider2">
+    {% for b in bugatti %}
+      <div class="item">
+        <img src="{{b.product_image.url}}" alt="" height="200px">
+        <span class="fw-bold">{{b.title}}</span><br>
+        <span class="fs-5">Tk. {{b.discounted_price}}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- end 2nd product slider -->
+
+
+<!-- start 3rd product slider -->
+<div class="m-3">
+  <h2 class="mt-5">Mercedes Car</h2>
+
+  <!-- slider 3 -->
+  <div class="owl-carousel" id="slider3">
+    {% for m in mercedes %}
+      <div class="item">
+        <img src="{{m.product_image.url}}" alt="" height="200px">
+        <span class="fw-bold">{{m.title}}</span><br>
+        <span class="fs-5">Tk. {{m.discounted_price}}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- end 3rd product slider -->
+
+
+<!-- start 4th product slider -->
+<div class="m-3">
+  <h2 class="mt-5">Range Rover Car</h2>
+
+  <!-- slider 4 -->
+  <div class="owl-carousel" id="slider4">
+    {% for r in range_rover %}
+      <div class="item">
+        <img src="{{r.product_image.url}}" alt="" height="200px">
+        <span class="fw-bold">{{r.title}}</span><br>
+        <span class="fs-5">Tk. {{r.discounted_price}}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- end 4th product slider -->
+
+<!-- start 5th product slider -->
+<div class="m-3">
+  <h2 class="mt-5">BMW Car</h2>
+
+  <!-- slider 5 -->
+  <div class="owl-carousel" id="slider4">
+    {% for bm in bmw %}
+      <div class="item">
+        <img src="{{bm.product_image.url}}" alt="" height="200px">
+        <span class="fw-bold">{{bm.title}}</span><br>
+        <span class="fs-5">Tk. {{bm.discounted_price}}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- end 5th product slider -->
+{% endblock main-content %}
