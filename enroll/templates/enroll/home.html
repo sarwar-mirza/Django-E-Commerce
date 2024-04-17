@@ -59,11 +59,14 @@
   <!-- slider 1 -->
   <div class="owl-carousel" id="slider1">
     {% for a in audi %}
-      <div class="item">
-        <img src="{{a.product_image.url}}" alt="" height="200px">
-        <span class="fw-bold">{{a.title}}</span><br>
-        <span class="fs-5">Tk. {{a.discounted_price}}</span>
-      </div>
+      <a href="{% url 'product_detail_page' a.pk %}" class="btn">           <!--specific product details-->
+        <div class="item">
+          <img src="{{a.product_image.url}}" alt="" height="200px">
+          <span class="fw-bold">{{a.title}}</span><br>
+          <span class="fs-5">Tk. {{a.discounted_price}}</span>
+        </div>
+      </a>
+      
     {% endfor %}
   </div>
 </div>
@@ -112,11 +115,14 @@
   <!-- slider 2 -->
   <div class="owl-carousel" id="slider2">
     {% for b in bugatti %}
+    <a href="{% url 'product_detail_page' b.pk %}" class="btn">    <!--specific product details-->
       <div class="item">
         <img src="{{b.product_image.url}}" alt="" height="200px">
         <span class="fw-bold">{{b.title}}</span><br>
         <span class="fs-5">Tk. {{b.discounted_price}}</span>
       </div>
+    </a>
+      
     {% endfor %}
   </div>
 </div>
@@ -130,11 +136,14 @@
   <!-- slider 3 -->
   <div class="owl-carousel" id="slider3">
     {% for m in mercedes %}
-      <div class="item">
-        <img src="{{m.product_image.url}}" alt="" height="200px">
-        <span class="fw-bold">{{m.title}}</span><br>
-        <span class="fs-5">Tk. {{m.discounted_price}}</span>
-      </div>
+      <a href="{% url 'product_detail_page' m.pk %}" class="btn">       <!--specific product details-->
+        <div class="item">
+          <img src="{{m.product_image.url}}" alt="" height="200px">
+          <span class="fw-bold">{{m.title}}</span><br>
+          <span class="fs-5">Tk. {{m.discounted_price}}</span>
+        </div>
+      </a>
+      
     {% endfor %}
   </div>
 </div>
@@ -148,11 +157,14 @@
   <!-- slider 4 -->
   <div class="owl-carousel" id="slider4">
     {% for r in range_rover %}
-      <div class="item">
-        <img src="{{r.product_image.url}}" alt="" height="200px">
-        <span class="fw-bold">{{r.title}}</span><br>
-        <span class="fs-5">Tk. {{r.discounted_price}}</span>
-      </div>
+      <a href="{% url 'product_detail_page' r.pk %}" class="btn">         <!--specific product details-->
+        <div class="item">
+          <img src="{{r.product_image.url}}" alt="" height="200px">
+          <span class="fw-bold">{{r.title}}</span><br>
+          <span class="fs-5">Tk. {{r.discounted_price}}</span>
+        </div>
+      </a>
+      
     {% endfor %}
   </div>
 </div>
@@ -165,11 +177,14 @@
   <!-- slider 5 -->
   <div class="owl-carousel" id="slider4">
     {% for bm in bmw %}
-      <div class="item">
-        <img src="{{bm.product_image.url}}" alt="" height="200px">
-        <span class="fw-bold">{{bm.title}}</span><br>
-        <span class="fs-5">Tk. {{bm.discounted_price}}</span>
-      </div>
+      <a href="{% url 'product_detail_page' bm.pk %}" class="btn">        <!--specific product details-->
+        <div class="item">
+          <img src="{{bm.product_image.url}}" alt="" height="200px">
+          <span class="fw-bold">{{bm.title}}</span><br>
+          <span class="fs-5">Tk. {{bm.discounted_price}}</span>
+        </div>
+      </a>
+      
     {% endfor %}
   </div>
 </div>

@@ -1,0 +1,47 @@
+<!-- Inherit parent template -->
+{% extends "core/base.html" %}
+
+<!-- load static -->
+{% load static %}
+
+
+<!-- block tag title -->
+{% block title %}Product Details{% endblock title %}
+
+
+
+<!-- block tag main-content -->
+{% block main-content %}
+  <div class="container my-5">
+    <div class="row">
+        <div class="col-sm-6 text-center align-self-center">
+            <img src="{{product.product_image.url}}" class="img-fluid img-thumbnail" alt="">
+        </div>
+
+        <div class="col-sm-5 offset-1">
+            <h2>Product Title:  {{product.title}}</h2> <hr>
+            <span>{{product.brand}}</span>
+            <p class="mt-5">{{product.description}}</p> <br>
+            <h4>Tk. {{product.discounted_price}}  <small class="fw-light text-decoration-line-through">Tk. {{product.selling_price}} </small></h4> <br>
+
+            <a href="" class="btn btn-primary shadow px-5 py-2">Add to cart</a>
+            <a href="" class="btn btn-danger shadow px-5 py-2 ms-5">Buy Now</a>
+
+
+            
+
+            <h5 class="mt-5">Available Offers</h5>
+            <ul>
+                <li>Bank Offer 5% Unlimited Cashback on Flipkart City Bank Credit</li>
+                <li>Special Price Get extra tk3000 off (price inclusive of discount)</li>
+                <li>No cost EMI tk1,667/month. Standard EMI also available</li>
+                <li>Partner Offer tk2000 Flipkart Gift Card on Every 1000th Transaction with a new Visa Debit/Credit Card</li>
+            </ul>
+
+
+        </div>
+    </div>
+  </div>
+
+
+{% endblock main-content %}
