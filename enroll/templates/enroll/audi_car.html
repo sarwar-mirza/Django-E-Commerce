@@ -1,0 +1,63 @@
+<!-- Inherit parent template -->
+{% extends "core/base.html" %}
+
+<!-- load static file -->
+{% load static %}
+
+<!-- block tag title -->
+{% block title %}Audi Car{% endblock title %}
+
+
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+        <a href="{% url 'audiPage' %}" class="list-group-item list-group-item-action active" aria-current="true">
+          Audi car
+        </a>
+
+
+        <a href="{% url 'audiPageData' 'Audi_Fuel' %}" class="list-group-item list-group-item-action" aria-current="true">
+          Fuel Car
+        </a>
+
+        <a href="{% url 'audiPageData' 'Audi_Electric' %}" class="list-group-item list-group-item-action" aria-current="true">
+          Electric Car
+        </a>
+
+        <a href="{% url 'audiPageData' 'Below' %}" class="list-group-item list-group-item-action" aria-current="true">
+          Minimum Price
+        </a>
+
+        <a href="{% url 'audiPageData' 'Above' %}" class="list-group-item list-group-item-action" aria-current="true">
+          Maximum Price
+        </a>
+        
+        
+      </div>
+  </div>
+  <div class="col-sm-8 ">
+   <div class="row">
+    {% for product in audis %}
+    <div class="col-sm-4 text-center mb-4">
+
+        <div class="card">
+
+          <a href="{% url 'product_detail_page' product.id %}" class="btn">
+            <img src="{{product.product_image.url}}" class="card-img-top" alt="..." height="200px">
+            <div class="card-body">
+              <div class="fw-bold">{{product.title}}</div> 
+              <div class="fw-bold">Tk. {{product.discounted_price}} <small class="fw-light text-decoration-line-through"> {{product.selling_price}}</small>
+              </div>
+            </div>
+          </a>
+          
+        </div>
+    </div>
+    {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

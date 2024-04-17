@@ -9,6 +9,17 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>
           </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Category
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'audiPage' %}">Audi</a></li>
+              <li><a class="dropdown-item" href="{% url 'bugattiPage' %}">Bugatti</a></li>
+            </ul>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
