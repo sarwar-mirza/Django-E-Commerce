@@ -32,21 +32,25 @@ class SignUpTemplateView(TemplateView):
 
 # Create Login Function based view
 def loginView(request):
-    if request.method == 'POST':
-        fm = LoginAuthenticationForm(request=request, data = request.POST)
-        
-        if fm.is_valid():
-            un = fm.cleaned_data['username']
-            pw = fm.cleaned_data['password']
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            fm = LoginAuthenticationForm(request=request, data = request.POST)
             
-            user = authenticate(username=un, password=pw)
-            
-            if user is not None:
-                login(request, user)
-                return HttpResponseRedirect('/accounts/profile/')
+            if fm.is_valid():
+                un = fm.cleaned_data['username']
+                pw = fm.cleaned_data['password']
+                
+                user = authenticate(username=un, password=pw)
+                
+                if user is not None:
+                    login(request, user)
+                    return HttpResponseRedirect('/accounts/profile/')
+        else:
+            fm = LoginAuthenticationForm()
+        return render(request, 'authentication/login.html', {'form':fm})
+    
     else:
-        fm = LoginAuthenticationForm()
-    return render(request, 'authentication/login.html', {'form':fm})
+        return HttpResponseRedirect('/accounts/profile/')
 
 
 
