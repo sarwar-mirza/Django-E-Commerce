@@ -1,10 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView
-from .forms import SignUpUserCreationForm, LoginAuthenticationForm, ProfileCustomerInfoForm, UserPasswordChangeForm
+from .forms import SignUpUserCreationForm, LoginAuthenticationForm, ProfileCustomerInfoForm, UserPasswordChangeForm, ResetPasswordForm, ForgotSetPasswordForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import CustomerInfo
-from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required 
@@ -111,6 +111,32 @@ class ChangePasswordView(PasswordChangeView):
 class ChangePasswordDoneView(PasswordChangeDoneView):
     template_name = 'authentication/passwordchangedone.html'
 
+
+
+
+# Reset Password
+class ResetPasswordView(PasswordResetView):
+    template_name = 'authentication/passwordreset.html'
+    form_class = ResetPasswordForm
+    success_url = '/accounts/resetdone/'
+
+
+# Reset password done
+class ResetPasswordDoneView(PasswordResetDoneView):
+    template_name = 'authentication/passwordresetdone.html'
+
+
+
+# Reset password confirm
+class ResetPasswordConfirmView(PasswordResetConfirmView):
+    template_name = 'authentication/passwordresetconfirm.html'
+    form_class = ForgotSetPasswordForm
+    success_url = '/accounts/resetcomplete/'
+
+
+# Reset password done
+class ResetPasswordCompleteView(PasswordResetCompleteView):
+    template_name = 'authentication/passwordresetcomplete.html'
 
 
 

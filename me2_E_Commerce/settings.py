@@ -133,3 +133,7 @@ MEDIA_ROOT = BASE_DIR / 'media' # define folder
 
 # login redirect
 LOGIN_REDIRECT_URL = '/accounts/profile/'
+
+
+# reset password console link
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
