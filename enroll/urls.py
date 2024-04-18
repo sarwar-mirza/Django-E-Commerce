@@ -10,7 +10,7 @@ urlpatterns = [
     path('bugatti/', views.bugatti_car, name='bugattiPage'),
     path('bugatti/<slug:data>', views.bugatti_car, name='bugattiPageData'),
     
-    
+    path('address/', views.AddressView.as_view(), name='address-page'),
 ]
 
 

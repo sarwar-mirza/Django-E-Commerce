@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, View
 from .models import ProductInfo
-
+from authentication.models import CustomerInfo
 # Create your views here.
 class HomeTemplateView(TemplateView):
     template_name = 'enroll/home.html'
@@ -54,4 +54,10 @@ def bugatti_car(request, data=None):
 
 
 
+
+# Address
+class AddressView(View):
+     def get(self, request):
+        add = CustomerInfo.objects.filter(user=request.user)
+        return render(request, 'enroll/address.html', {'address':add, 'active':'btn-primary'})
 

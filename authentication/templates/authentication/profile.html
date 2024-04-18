@@ -15,8 +15,8 @@
         <div class="col-sm-3 mt-5 border-end">
             <h4 class="text-center">welcome <span class="text-capitalize">{{request.user}}</span></h4>
             <ul class="list-unstyled">
-                <li class="d-grid"><a href="" class="btn {{active}}">Profile</a></li>
-                <li class="d-grid"><a href="" class="btn">Address</a></li>
+                <li class="d-grid"><a href="{% url 'profile-page' %}" class="btn {{active}}">Profile</a></li>
+                <li class="d-grid"><a href="{% url 'address-page' %}" class="btn">Address</a></li>
                </ul>
         </div>
 
