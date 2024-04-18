@@ -27,4 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeTemplateView.as_view(), name='homepage'),
     path('exhibition/', include('enroll.urls')),
+    path('accounts/', include('authentication.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
