@@ -130,3 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom configuration
 MEDIA_URL = '/media/'   #define media url
 MEDIA_ROOT = BASE_DIR / 'media' # define folder
+
+# login redirect
+LOGIN_REDIRECT_URL = '/accounts/profile/'

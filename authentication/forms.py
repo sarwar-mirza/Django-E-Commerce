@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm 
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
@@ -46,6 +46,19 @@ class SignUpUserCreationForm(UserCreationForm):
         }
 
 
+
+
+
+
+# Create Login page
+class LoginAuthenticationForm(AuthenticationForm):
+    username = UsernameField(error_messages={'required':'Enter Your Username'}, widget=forms.TextInput(attrs={"autofocus": True, "class":"form-control", "placeholder":"Username"}))
+    password = forms.CharField(
+        label=_("Password"),
+        strip=False,
+        error_messages= {'required':'Enter your passoword'},
+        widget=forms.PasswordInput(attrs={"autocomplete": "current-password", "class":"form-control", "placeholder":"Password"}),
+    )
 
 
 
