@@ -1,9 +1,13 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView
-from .forms import SignUpUserCreationForm, LoginAuthenticationForm, ProfileCustomerInfoForm
+from .forms import SignUpUserCreationForm, LoginAuthenticationForm, ProfileCustomerInfoForm, UserPasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import CustomerInfo
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
+
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required 
 
 # Create your sign up views here.
 class SignUpTemplateView(TemplateView):
@@ -90,6 +94,23 @@ def user_profile(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/accounts/login/')
+
+
+
+# password change
+
+@method_decorator(login_required, name='dispatch')
+class ChangePasswordView(PasswordChangeView):
+    template_name = 'authentication/passwordchange.html'
+    form_class = UserPasswordChangeForm
+    success_url = '/accounts/change-password-done/'
+
+
+# change password done
+@method_decorator(login_required, name='dispatch')
+class ChangePasswordDoneView(PasswordChangeDoneView):
+    template_name = 'authentication/passwordchangedone.html'
+
 
 
 
