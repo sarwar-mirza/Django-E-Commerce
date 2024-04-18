@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView
 from .forms import SignUpUserCreationForm, LoginAuthenticationForm, ProfileCustomerInfoForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import CustomerInfo
 
 # Create your sign up views here.
@@ -82,6 +82,14 @@ def user_profile(request):
         return HttpResponseRedirect('/accounts/login/')
 
 
+
+
+
+
+# User Logout
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/accounts/login/')
 
 
 
