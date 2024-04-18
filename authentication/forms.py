@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
+from .models import CustomerInfo
 
 
 # Sign up forms
@@ -59,6 +60,40 @@ class LoginAuthenticationForm(AuthenticationForm):
         error_messages= {'required':'Enter your passoword'},
         widget=forms.PasswordInput(attrs={"autocomplete": "current-password", "class":"form-control", "placeholder":"Password"}),
     )
+
+
+
+# Profile 
+class ProfileCustomerInfoForm(forms.ModelForm):
+    class Meta:
+        model = CustomerInfo
+        # ordering field
+        fields = ['first_name', 'last_name', 'division', 'city', 'zipcode', 'area']
+        
+        # lable
+        labels = { 
+            'zipcode': 'Post Code'
+        }
+        
+        error_messages = {
+            'first_name': {'required': 'Enter Your First Name'},
+            'last_name': {'required': 'Enter Your Last Name'},
+            'division': {'required': 'Enter Your division'},
+            'city': {'required': 'Enter Your city'},
+            'zipcode': {'required': 'Enter Your Post Code'},
+            'area': {'required': 'Enter Your Area'},
+        }
+        
+        
+        # widgets
+        widgets = {
+            'first_name': forms.TextInput(attrs={"class":"form-control", "placeholder":"First Name"}),
+            'last_name': forms.TextInput(attrs={"class":"form-control", "placeholder":"Last Name"}),
+            'division': forms.Select(attrs={"class":"form-control", "placeholder":"Division"}),
+            'city': forms.TextInput(attrs={"class":"form-control", "placeholder":"City"}),
+            'zipcode': forms.TextInput(attrs={"class":"form-control", "placeholder":"zipcode"}),
+            'area': forms.TextInput(attrs={"class":"form-control", "placeholder":"Village, House No, Road No "}),
+        }
 
 
 

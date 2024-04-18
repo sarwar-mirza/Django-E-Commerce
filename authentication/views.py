@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView
-from .forms import SignUpUserCreationForm, LoginAuthenticationForm
+from .forms import SignUpUserCreationForm, LoginAuthenticationForm, ProfileCustomerInfoForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from .models import CustomerInfo
 
 # Create your sign up views here.
 class SignUpTemplateView(TemplateView):
@@ -46,6 +47,36 @@ def loginView(request):
     else:
         fm = LoginAuthenticationForm()
     return render(request, 'authentication/login.html', {'form':fm})
+
+
+
+
+# Profile
+def user_profile(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            fm = ProfileCustomerInfoForm(request.POST, instance=request.user)
+            
+            if fm.is_valid():
+                usr = request.user
+                f_name = fm.cleaned_data['first_name']
+                l_name = fm.cleaned_data['last_name']
+                divi= fm.cleaned_data['division']
+                ct= fm.cleaned_data['city']
+                zp= fm.cleaned_data['zipcode']
+                ar= fm.cleaned_data['area']
+                
+                reg = CustomerInfo(user=usr, first_name=f_name, last_name=l_name, division=divi, city=ct, zipcode=zp, area=ar)
+                reg.save()
+                
+                messages.success(request, 'Congratulations! profile updated successfully.')
+        else:
+            fm = ProfileCustomerInfoForm(instance=request.user)
+        return render(request, 'authentication/profile.html', {'form':fm, 'active':'btn-primary'})
+    
+    else:
+        return HttpResponseRedirect('/accounts/login/')
+
 
 
 
