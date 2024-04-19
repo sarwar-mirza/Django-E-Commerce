@@ -1,0 +1,39 @@
+<!-- Inherit parent template -->
+{% extends "core/base.html" %}
+
+<!-- load static file -->
+{% load static %}
+
+<!-- block tag title -->
+{% block title %}About Page{% endblock title %}
+
+
+
+<!-- block tag Banner Slider -->
+{% block main-content %}
+<div class="container mt-5">
+    <h3>About</h3><hr>
+    <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4 mt-5">
+            <img src="{% static 'enroll/assets/about.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Features Car Information</h5>
+              <p class="card-text">What’s Cruise Control, and how’s it different from Adaptive Cruise Control? What are Cornering Foglamps? </p>
+              <p>And Cornering Headlights? If you struggle to tell your ABS apart from your EBS, you aren’t alone. Pick up any car brochure, visit any dealership or click on any car review link, and you will find yourself faced with a tall list of features and specs that sound great to have on your car, but are hard to understand, especially with the internet flooded with often a lot of (and often conflicting) information on these terms.</p>
+                <p><b>Now</b>, we understand you want to know what these car features mean, how they work and in what ways do they impact your drive and ride quality.</p>
+                <p> But we also know that you may be pressed for time, so we decided to keep our car glossary short and simple. Take a look at our handy list of car term-busters, all in 150 characters or less. We will keep updating the list, but do let us know in the comment box if there’s a particular term that you want us to cover or explain in more detail</p>
+              <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+
+              <div class="text-center">
+                <a href="{% url 'contact-page' %}" class="btn btn-info mt-5 ">Contact</a>
+                <a href="{% url 'homepage' %}" class="btn btn-info mt-5 ms-3">Home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock main-content%}

@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 from paybill.models import Cart
 from django.db.models import Q
 from django.contrib.auth.models import User
+
+from django.views.generic.edit import FormView
+from .forms import ContactForm
 # Create your views here.
 class HomeTemplateView(TemplateView):
     template_name = 'enroll/home.html'
@@ -85,3 +88,18 @@ class AddressView(View):
             totalitem = len(Cart.objects.filter(user=request.user))
         return render(request, 'enroll/address.html', {'address':add, 'active':'btn-primary', 'totalitem':totalitem})
 
+# About
+def about(request):
+    return render(request, 'enroll/about.html')
+
+# Contact
+class ContactFormView(FormView):
+    template_name = 'enroll/contact.html'
+    form_class = ContactForm
+    success_url = '/exhibition/thankyou/'
+    
+
+    
+    
+class ThankyouTemplateView(TemplateView):
+    template_name = 'enroll/thankyou.html'
