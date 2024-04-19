@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from enroll.models import ProductInfo
 from .models import Cart, OrderPlaced
 from django.contrib.auth.models import User
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 from django.db.models import Q

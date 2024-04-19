@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, View
 from .models import ProductInfo
 from authentication.models import CustomerInfo
+
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 class HomeTemplateView(TemplateView):
     template_name = 'enroll/home.html'
@@ -56,6 +60,7 @@ def bugatti_car(request, data=None):
 
 
 # Address
+@method_decorator(login_required, name='dispatch')
 class AddressView(View):
      def get(self, request):
         add = CustomerInfo.objects.filter(user=request.user)
