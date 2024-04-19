@@ -6,6 +6,9 @@ from authentication.models import CustomerInfo
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
+from paybill.models import Cart
+from django.db.models import Q
+
 # Create your views here.
 class HomeTemplateView(TemplateView):
     template_name = 'enroll/home.html'
@@ -28,7 +31,9 @@ class ProductDetailView(View):
     def get(self, request, pk):
         product = ProductInfo.objects.get(pk=pk)
         
-        return render(request, 'enroll/product_detail.html', {'product':product})
+        item_already_in_cart = False      # same product select user
+        item_already_in_cart = Cart.objects.filter(Q(product=product.id) & Q(user=request.user)).exists()
+        return render(request, 'enroll/product_detail.html', {'product':product, 'item_already_in_cart':item_already_in_cart})
 
 
 
