@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 from paybill.models import Cart
 from django.db.models import Q
-
+from django.contrib.auth.models import User
 # Create your views here.
 class HomeTemplateView(TemplateView):
     template_name = 'enroll/home.html'
@@ -32,7 +32,7 @@ class ProductDetailView(View):
         product = ProductInfo.objects.get(pk=pk)
         
         item_already_in_cart = False      # same product select user
-        item_already_in_cart = Cart.objects.filter(Q(product=product.id) & Q(user=request.user)).exists()
+        item_already_in_cart = Cart.objects.filter(Q(product=product.id) & Q(user=request.user.id)).exists()
         return render(request, 'enroll/product_detail.html', {'product':product, 'item_already_in_cart':item_already_in_cart})
 
 
@@ -65,7 +65,7 @@ def bugatti_car(request, data=None):
 
 
 # Address
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class AddressView(View):
      def get(self, request):
         add = CustomerInfo.objects.filter(user=request.user)
