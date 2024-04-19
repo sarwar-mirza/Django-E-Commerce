@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse
 
+from authentication.models import CustomerInfo
 # Create your views here.
 @login_required
 
@@ -120,6 +121,34 @@ def remove_cart(request):                     # Remove Quantity
     }
 
     return JsonResponse(data)
+
+
+
+@login_required
+def checkout(request):
+ totalitem = 0
+ user = request.user
+ add = CustomerInfo.objects.filter(user=user)
+ cart_items = Cart.objects.filter(user=user)
+
+ amount = 0.0
+ shipping_amount = 70.0
+ totalamount = 0.0
+
+ cart_product = [p for p in Cart.objects.all() if p.user == request.user]
+
+ if cart_product:
+  for p in cart_product:
+   tempamount = (p.quantity * p.product.discounted_price)
+   amount += tempamount
+  totalamount = amount + shipping_amount
+
+ if request.user.is_authenticated:
+   totalitem = len(Cart.objects.filter(user=request.user))
+
+
+ return render(request, 'paybill/checkout.html', {'add':add, 'totalamount':totalamount, 'cart_items': cart_items, 'totalitem':totalitem})
+
 
 
 
