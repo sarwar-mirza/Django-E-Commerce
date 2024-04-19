@@ -27,31 +27,37 @@
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success" type="submit">me2</button>
         </form>
       </div>
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        {% if request.user.is_authenticated %}
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{request.user.username}}
-        </a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'profile-page' %}">Profile</a></li>
-            <li><a class="dropdown-item" href="{% url 'change-password-page' %}">Change Password</a></li>
-            <li><a class="dropdown-item" href="{% url 'logout-page' %}">logout</a></li>
-
+      <div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{request.user.username}}
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'profile-page' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'change-password-page' %}">Change Password</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout-page' %}">logout</a></li>
+  
+          </ul>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">2</span> Cart </a>
+          </li>
+          
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login-page' %}">Log-in</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'signup-page' %}">Sign-up</a>  
+          </li>
+          {% endif %}
         </ul>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login-page' %}">Log-in</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'signup-page' %}">Sign-up</a>  
-        </li>
-        {% endif %}
-      </ul>
+      </div>
     </div>
   </nav>

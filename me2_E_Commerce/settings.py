@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',         # create custom application
     'enroll',         # create custom application
     'authentication',# create custom application
+    'paybill',# create custom application
 ]
 
 MIDDLEWARE = [
