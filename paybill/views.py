@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from enroll.models import ProductInfo
-from .models import Cart
+from .models import Cart, OrderPlaced
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -151,4 +151,9 @@ def checkout(request):
 
 
 
+# Order Placed
+@login_required
+def orders(request):
+ op = OrderPlaced.objects.filter(user=request.user)
+ return render(request, 'paybill/orders.html', {'order_placed':op})
 
