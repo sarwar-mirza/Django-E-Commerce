@@ -32,7 +32,8 @@ class ProductDetailView(View):
         product = ProductInfo.objects.get(pk=pk)
         
         item_already_in_cart = False      # same product select user
-        item_already_in_cart = Cart.objects.filter(Q(product=product.id) & Q(user=request.user.id)).exists()
+        if request.user.is_authenticated:
+            item_already_in_cart = Cart.objects.filter(Q(product=product.id) & Q(user=request.user.id)).exists()
         return render(request, 'enroll/product_detail.html', {'product':product, 'item_already_in_cart':item_already_in_cart})
 
 
