@@ -8,7 +8,7 @@ from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required 
-
+from paybill.models import Cart
 # Create your sign up views here.
 class SignUpTemplateView(TemplateView):
     template_name = 'authentication/signup.html'
@@ -78,9 +78,17 @@ def user_profile(request):
                 reg.save()
                 
                 messages.success(request, 'Congratulations! profile updated successfully.')
+                
+                totalitem = 0
+                if request.user.is_authenticated:
+                    totalitem = len(Cart.objects.filter(user=request.user))
         else:
             fm = ProfileCustomerInfoForm(instance=request.user)
-        return render(request, 'authentication/profile.html', {'form':fm, 'active':'btn-primary'})
+            
+            totalitem = 0
+            if request.user.is_authenticated:
+                totalitem = len(Cart.objects.filter(user=request.user))
+        return render(request, 'authentication/profile.html', {'form':fm, 'active':'btn-primary', 'totalitem':totalitem})
     
     else:
         return HttpResponseRedirect('/accounts/login/')

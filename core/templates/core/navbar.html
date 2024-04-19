@@ -40,13 +40,14 @@
           </a>
           <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'profile-page' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
               <li><a class="dropdown-item" href="{% url 'change-password-page' %}">Change Password</a></li>
               <li><a class="dropdown-item" href="{% url 'logout-page' %}">logout</a></li>
   
           </ul>
           </li>
           <li class="nav-item mx-2">
-            <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">2</span> Cart </a>
+            <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">{{totalitem}}</span> Cart </a>
           </li>
           
           {% else %}

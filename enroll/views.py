@@ -15,13 +15,17 @@ class HomeTemplateView(TemplateView):
     
     
     def get_context_data(self, **kwargs):
+        totalitem = 0
         context = super().get_context_data(**kwargs)
         audi = ProductInfo.objects.filter(category="Audi")
         bmw = ProductInfo.objects.filter(category='BMW')
         bugatti = ProductInfo.objects.filter(category="Bugatti")
         mercedes = ProductInfo.objects.filter(category="Mercedes")
         range_rover = ProductInfo.objects.filter(category="Range Rover")
-        context = {'audi':audi, 'bmw':bmw, 'bugatti':bugatti, 'mercedes':mercedes, 'range_rover':range_rover}
+        
+        if self.request.user.is_authenticated:
+            totalitem = len(Cart.objects.filter(user=self.request.user))
+        context = {'audi':audi, 'bmw':bmw, 'bugatti':bugatti, 'mercedes':mercedes, 'range_rover':range_rover, 'totalitem':totalitem}
         return context
 
 
@@ -29,12 +33,16 @@ class HomeTemplateView(TemplateView):
 # Product detail
 class ProductDetailView(View):
     def get(self, request, pk):
+        totalitem = 0
         product = ProductInfo.objects.get(pk=pk)
         
         item_already_in_cart = False      # same product select user
         if request.user.is_authenticated:
             item_already_in_cart = Cart.objects.filter(Q(product=product.id) & Q(user=request.user.id)).exists()
-        return render(request, 'enroll/product_detail.html', {'product':product, 'item_already_in_cart':item_already_in_cart})
+        
+        if request.user.is_authenticated:
+            totalitem = len(Cart.objects.filter(user=request.user))
+        return render(request, 'enroll/product_detail.html', {'product':product, 'item_already_in_cart':item_already_in_cart, 'totalitem':totalitem})
 
 
 
@@ -69,6 +77,11 @@ def bugatti_car(request, data=None):
 # @method_decorator(login_required, name='dispatch')
 class AddressView(View):
      def get(self, request):
+        totalitem = 0
         add = CustomerInfo.objects.filter(user=request.user)
-        return render(request, 'enroll/address.html', {'address':add, 'active':'btn-primary'})
+        
+        
+        if request.user.is_authenticated:
+            totalitem = len(Cart.objects.filter(user=request.user))
+        return render(request, 'enroll/address.html', {'address':add, 'active':'btn-primary', 'totalitem':totalitem})
 
