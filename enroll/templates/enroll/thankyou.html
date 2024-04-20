@@ -1,0 +1,19 @@
+<!-- Inherit parent template -->
+{% extends "core/base.html" %}
+
+<!-- load static file -->
+{% load static %}
+
+<!-- block tag title -->
+{% block title %}Thank You{% endblock title %}
+
+
+
+<!-- block tag main-content -->
+{% block main-content %}
+<div class="container mt-5">
+    <div class="row">
+        <h3>Your message successfully send</h3>
+    </div>
+</div>
+{% endblock main-content %}

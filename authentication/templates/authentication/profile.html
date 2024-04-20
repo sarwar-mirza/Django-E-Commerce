@@ -1,0 +1,57 @@
+<!-- Inherit parent template -->
+{% extends "core/base.html" %}
+
+<!-- load static -->
+{% load static %}
+
+<!-- block tag title -->
+{% block title %}Profile Page{% endblock title %}
+
+
+<!-- block tag content -->
+{% block main-content %}
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-3 mt-5 border-end">
+            <h4 class="text-center">welcome <span class="text-capitalize">{{request.user}}</span></h4>
+            <ul class="list-unstyled">
+                <li class="d-grid"><a href="{% url 'profile-page' %}" class="btn {{active}}">Profile</a></li>
+                <li class="d-grid"><a href="{% url 'address-page' %}" class="btn">Address</a></li>
+               </ul>
+        </div>
+
+
+        <div class="col-sm-7 offset-1 mt-5">
+            <form action="" method="POST" novalidate class="shadow p-5">
+                {% csrf_token %}
+
+                <!-- Login Form Field, label, messages -->
+                {% if form %}
+                {% for fm in form %}
+                <div class="form-group fw-bold">
+                    {{fm.label_tag}} {{fm}}  <small class="text-warning">{{fm.errors|striptags}}</small>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <input type="submit" class="btn btn-primary mt-2" value="submit">
+
+
+                <!-- non field errors -->
+                {% if form.non_field_errors %}
+                  {% for error in form.non_field_errors %}
+                    <p class="text-danger">{{error}}</p>
+                  {% endfor %}
+                {% endif %}
+            </form>
+
+            <!-- Message framework -->
+            {% if messages %}
+              {% for message in messages %}
+                <p {% if message.tags %} class="alert alert-{{message.tags}} mt-2" {% endif %}>{{message}}</p>
+              {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+  </div>
+{% endblock main-content %}

@@ -1,0 +1,55 @@
+<!-- Inherit parent template -->
+{% extends "core/base.html" %}
+
+<!-- load static -->
+{% load static %}
+
+<!-- block tag title -->
+{% block title %}Sign-up{% endblock title %}
+
+
+<!-- block tag content -->
+{% block main-content %}
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-8 offset-2 mt-2">
+            <form action="" method="POST" novalidate class="shadow p-5">
+                {% csrf_token %}
+
+                <h3 class="mt-2">Sign-Up</h3>
+                <small>It's quick and easy</small> <hr>
+
+                <!-- Login Form Field, label, messages -->
+                {% if form %}
+                {% for fm in form %}
+                <div class="form-group fw-bold">
+                    {{fm.label_tag}} {{fm}}  <small class="text-warning">{{fm.errors|striptags}}</small>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <input type="submit" class="btn btn-primary mt-2" value="sign-up">
+
+                <div class="text-center">
+                    <small>welcome to me2</small> |
+                    <a href="{% url 'login-page' %}" class="text-info">Login account</a>
+                </div>
+
+                <!-- non field errors -->
+                {% if form.non_field_errors %}
+                  {% for error in form.non_field_errors %}
+                    <p class="text-danger">{{error}}</p>
+                  {% endfor %}
+                {% endif %}
+            </form>
+
+            <!-- Message framework -->
+            {% if messages %}
+              {% for message in messages %}
+                <p {% if message.tags %} class="alert alert-{{message.tags}} mt-2" {% endif %}>{{message}}</p>
+              {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+  </div>
+{% endblock main-content %}

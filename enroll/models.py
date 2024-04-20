@@ -21,7 +21,8 @@ class ProductInfo(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=30)
     product_image = models.ImageField(upload_to="CarImages")
     
-    
+    def __str__(self):
+        return str(self.id)
 
 
 

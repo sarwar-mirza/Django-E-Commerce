@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',         # create custom application
     'enroll',         # create custom application
     'authentication',# create custom application
+    'paybill',# create custom application
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom configuration
 MEDIA_URL = '/media/'   #define media url
 MEDIA_ROOT = BASE_DIR / 'media' # define folder
+
+# login redirect
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+
+
+# reset password console link
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

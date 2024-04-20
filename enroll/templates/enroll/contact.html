@@ -1,0 +1,33 @@
+<!-- Inherit parent template -->
+{% extends "core/base.html" %}
+
+<!-- load static file -->
+{% load static %}
+
+<!-- block tag title -->
+{% block title %}Contact Page{% endblock title %}
+
+
+
+<!-- block tag main-content -->
+
+{% block main-content %}
+<div class="row">
+    <div class="col-sm-8 offset-2 mt-2">
+        <h3 class="text-center alert alert-danger mt-1">Contact Form</h3>
+
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+            {% if form %}
+              {% for fm in form %}
+                <div class="form-group fw-bold mt-2">
+                    {{fm.label_tag}} {{fm}} <small class="text-danger mt-1">{{fm.errors|striptags}}</small>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+            <input type="submit" class="btn btn-info mt-3" value="send">
+        </form>
+    </div>
+</div>
+{% endblock main-content %}
